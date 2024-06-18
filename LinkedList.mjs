@@ -8,7 +8,6 @@ export class LinkedList {
 
   append(value) {
     const newNode = new Node(value);
-    console.log(newNode);
     if (this.tail) {
       this.tail.nextNode = newNode;
     } else {
@@ -18,9 +17,21 @@ export class LinkedList {
     this.size++;
   }
 
-  prepend(value) {}
+  prepend(value) {
+    const newNode = new Node(value);
+    // if this head is null just append;
+    if (!this.head) {
+      return this.append(value);
+    }
+
+    // if there is existing head,
+    newNode.nextNode = this.head;
+    this.head = newNode;
+    this.size++;
+  }
 }
 
 const ll = new LinkedList();
+ll.prepend("new hello");
 ll.append("hello world");
 console.log(ll);
