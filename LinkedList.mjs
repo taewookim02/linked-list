@@ -102,6 +102,32 @@ export class LinkedList {
     return null;
   }
 
+  /**inserts a new node with the provided value at the given index*/
+  insertAt(value, index) {
+    if (index < 0 || index > this.size) {
+      throw new Error("Index out of bounds");
+    }
+    const newNode = new Node(value);
+
+    if (index === 0) {
+      newNode.nextNode = this.head;
+      this.head = newNode;
+      if (this.size === 0) {
+        this.tail = newNode;
+      }
+    } else {
+      let prevNode = this.at(index - 1);
+      let currNode = prevNode.nextNode;
+      prevNode.nextNode = newNode;
+      newNode.nextNode = currNode;
+      if (index === this.size) {
+        this.tail = newNode;
+      }
+    }
+
+    this.size++;
+  }
+
   /**Prints the linked list in the following format:
    * ( value ) -> ( value ) -> ( value ) -> null*/
   toString() {
@@ -124,4 +150,7 @@ ll.prepend("node4");
 ll.prepend("node5");
 ll.append("node6");
 
+ll.toString();
+ll.insertAt("insertzz", 2);
+ll.insertAt("insertzz0000", 0);
 ll.toString();
