@@ -42,10 +42,27 @@ export class LinkedList {
     return this.tail;
   }
 
-  at(index) {}
+  at(index) {
+    if (index < 0 || index >= this.size) {
+      throw new Error("Index out of bounds");
+    }
+
+    let curr = this.head;
+    for (let i = 0; i < index; i++) {
+      curr = curr.nextNode;
+    }
+    return curr;
+  }
 }
 
 const ll = new LinkedList();
-ll.append("hello world");
-ll.prepend("new hello");
-console.log(ll.getTail());
+ll.prepend("node1");
+ll.prepend("node2");
+ll.prepend("node3");
+ll.prepend("node4");
+ll.prepend("node5");
+ll.append("node6");
+// console.log(ll.getHead());
+console.log(ll.getSize());
+// console.log(ll.at(-1));
+console.log(ll.at(-12));
