@@ -29,9 +29,23 @@ export class LinkedList {
     this.head = newNode;
     this.size++;
   }
+
+  getSize() {
+    return this.size;
+  }
+
+  getHead() {
+    return this.head;
+  }
+
+  getTail() {
+    return this.tail;
+  }
+
+  at(index) {}
 }
 
 const ll = new LinkedList();
-ll.prepend("new hello");
 ll.append("hello world");
-console.log(ll);
+ll.prepend("new hello");
+console.log(ll.getTail());
