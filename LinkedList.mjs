@@ -128,6 +128,30 @@ export class LinkedList {
     this.size++;
   }
 
+  /**removes the node at the given index*/
+  removeAt(index) {
+    if (index < 0 || index >= this.size) {
+      throw new Error("Index out of bounds");
+    }
+
+    if (index === 0) {
+      this.head = this.head.nextNode;
+      if (this.size === 1) {
+        this.tail = null;
+      }
+    } else {
+      // get the one before
+      let prevNode = this.at(index - 1);
+      let nodeToRemove = prevNode.nextNode;
+      let afterNode = nodeToRemove.nextNode;
+      prevNode.nextNode = afterNode;
+      if (index === this.size - 1) {
+        this.tail = prevNode;
+      }
+    }
+    this.size--;
+  }
+
   /**Prints the linked list in the following format:
    * ( value ) -> ( value ) -> ( value ) -> null*/
   toString() {
@@ -153,4 +177,5 @@ ll.append("node6");
 ll.toString();
 ll.insertAt("insertzz", 2);
 ll.insertAt("insertzz0000", 0);
+ll.removeAt(0);
 ll.toString();
