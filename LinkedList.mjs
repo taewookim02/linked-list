@@ -53,11 +53,11 @@ export class LinkedList {
       throw new Error("Index out of bounds");
     }
 
-    let curr = this.head;
+    let currNode = this.head;
     for (let i = 0; i < index; i++) {
-      curr = curr.nextNode;
+      currNode = currNode.nextNode;
     }
-    return curr;
+    return currNode;
   }
 
   /**removes the last element from the list*/
@@ -80,26 +80,39 @@ export class LinkedList {
 
   /**returns true if passed in value is in the list else returns false*/
   contains(value) {
-    let curr = this.head;
-    while (curr !== null) {
-      if (curr.value === value) {
+    let currNode = this.head;
+    while (currNode !== null) {
+      if (currNode.value === value) {
         return true;
       }
-      curr = curr.nextNode;
+      currNode = currNode.nextNode;
     }
     return false;
   }
 
   /**returns the index of the node containing value, or null if not found*/
   find(value) {
-    let curr = this.head;
+    let currNode = this.head;
     for (let i = 0; i < this.size; i++) {
-      if (curr.value === value) {
+      if (currNode.value === value) {
         return i;
       }
-      curr = curr.nextNode;
+      currNode = currNode.nextNode;
     }
     return null;
+  }
+
+  /**Prints the linked list in the following format:
+   * ( value ) -> ( value ) -> ( value ) -> null*/
+  toString() {
+    let string = "";
+    let currNode = this.head;
+    while (currNode !== null) {
+      string += `( ${currNode.value} ) -> `;
+      currNode = currNode.nextNode;
+    }
+    string += "null";
+    console.log(string);
   }
 }
 
@@ -110,7 +123,5 @@ ll.prepend("node3");
 ll.prepend("node4");
 ll.prepend("node5");
 ll.append("node6");
-// const result = ll.contains("node");
-const result = ll.find("node6");
-console.log(ll.getSize());
-console.log(result);
+
+ll.toString();
