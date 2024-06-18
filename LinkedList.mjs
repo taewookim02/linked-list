@@ -53,6 +53,24 @@ export class LinkedList {
     }
     return curr;
   }
+
+  // remove last node from list
+  pop() {
+    if (this.size === 0) {
+      throw new Error("List is empty");
+    }
+
+    if (this.size === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      const secondLastNode = this.at(this.size - 2);
+      secondLastNode.nextNode = null;
+      this.tail = secondLastNode;
+    }
+
+    this.size--;
+  }
 }
 
 const ll = new LinkedList();
@@ -65,4 +83,7 @@ ll.append("node6");
 // console.log(ll.getHead());
 console.log(ll.getSize());
 // console.log(ll.at(-1));
-console.log(ll.at(-12));
+// console.log(ll.at(-12));
+console.log(ll.pop());
+console.log(ll.getSize());
+console.log(ll.tail);
