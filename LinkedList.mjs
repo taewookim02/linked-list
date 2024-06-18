@@ -89,6 +89,18 @@ export class LinkedList {
     }
     return false;
   }
+
+  /**returns the index of the node containing value, or null if not found*/
+  find(value) {
+    let curr = this.head;
+    for (let i = 0; i < this.size; i++) {
+      if (curr.value === value) {
+        return i;
+      }
+      curr = curr.nextNode;
+    }
+    return null;
+  }
 }
 
 const ll = new LinkedList();
@@ -98,5 +110,7 @@ ll.prepend("node3");
 ll.prepend("node4");
 ll.prepend("node5");
 ll.append("node6");
-const result = ll.contains("node");
+// const result = ll.contains("node");
+const result = ll.find("node6");
+console.log(ll.getSize());
 console.log(result);
